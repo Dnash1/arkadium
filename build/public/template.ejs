@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="styles.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="main.js"></script>
+<% var rand = Math.floor(Math.random() * (19 - 0 + 1)) + 0; %>
+<% var randTwo = Math.floor(Math.random() * (2 - 0 + 1)) + 0; %>
+<% var answer = parseInt(content.results[rand].release_date.split("-")[0]) %>
+<% var x = [0, 1, 2]%>
+<% function shff(arr) {
+    let i = arr.length;
+    while (i > 0) {
+        let ind = Math.floor(Math.random() * i);
+        i--;
+        let z = arr[i];
+        arr[i] = arr[ind];
+        arr[ind] = z;
+    }
+    return arr;
+} %>
+<% shff(x) %>
+
+<div class="container">
+	<div class="internal">
+	<p>In what year did Brad Pitt appear in <%= content.results[rand].title %>?</p>
+	<button onClick="ansCheck(<%=answer + x[0]%>, <%=answer%>)" class="ans"><%= answer + x[0] %></button>
+	<button onClick="ansCheck(<%=answer + x[1]%>, <%=answer%>)" class="ans"><%= answer + x[1] %></button>
+	<button onClick="ansCheck(<%=answer + x[2]%>, <%=answer%>)" class="ans"><%= answer + x[2] %></button>
+	<p class="outcome"></p>
+	<p class="corAns"></p>
+	<button onClick="reload()" class="plyAgain">Play Again?</button>
+	</div>
+	<div class="internal">
+	<img class="poster" src="https://image.tmdb.org/t/p/w500<%= content.results[rand].poster_path %>">	
+	</div>
+</div>
